@@ -131,10 +131,10 @@
                         <i id="theme-toggle-light-icon" class="fa-solid fa-sun text-amber-400 text-base"></i>
                     </button>
 
-                    <a href="prakash_resume.pdf" download="Prakash_K_Resume.pdf" class="hidden sm:inline-flex items-center space-x-2 px-4 py-2 text-sm font-semibold text-white bg-brand-600 hover:bg-brand-700 rounded-xl shadow-md shadow-brand-500/20 hover:shadow-brand-500/30 transition transform hover:-translate-y-0.5">
+                    <button onclick="openResumeModal()" class="hidden sm:inline-flex items-center space-x-2 px-4 py-2 text-sm font-semibold text-white bg-brand-600 hover:bg-brand-700 rounded-xl shadow-md shadow-brand-500/20 hover:shadow-brand-500/30 transition transform hover:-translate-y-0.5">
                         <i class="fa-solid fa-file-pdf"></i>
                         <span>Resume</span>
-                    </a>
+                    </button>
 
                     <!-- Mobile Menu Button -->
                     <button id="mobile-menu-btn" aria-label="Open navigation menu" class="md:hidden p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 focus:outline-none">
@@ -153,10 +153,10 @@
             <a href="#certifications" class="mobile-nav-link block px-3 py-2 rounded-lg text-base font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Certifications</a>
             <a href="#contact" class="mobile-nav-link block px-3 py-2 rounded-lg text-base font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Contact</a>
             <div class="pt-2">
-                <a href="prakash_resume.pdf" download="Prakash_K_Resume.pdf" class="w-full flex items-center justify-center space-x-2 px-4 py-2.5 text-sm font-semibold text-white bg-brand-600 hover:bg-brand-700 rounded-xl">
+                <button onclick="openResumeModal()" class="w-full flex items-center justify-center space-x-2 px-4 py-2.5 text-sm font-semibold text-white bg-brand-600 hover:bg-brand-700 rounded-xl">
                     <i class="fa-solid fa-file-pdf"></i>
                     <span>Download / View Resume</span>
-                </a>
+                </button>
             </div>
         </div>
     </header>
@@ -196,10 +196,10 @@
                                 <span>Contact Me</span>
                             </a>
 
-                            <a href="prakash_resume.pdf" download="Prakash_K_Resume.pdf" class="px-6 py-3.5 rounded-xl border-2 border-slate-300 dark:border-slate-700 hover:border-brand-600 dark:hover:border-brand-500 text-slate-700 dark:text-slate-200 hover:text-brand-600 dark:hover:text-brand-400 font-semibold text-sm sm:text-base transition flex items-center space-x-2">
+                            <button onclick="openResumeModal()" class="px-6 py-3.5 rounded-xl border-2 border-slate-300 dark:border-slate-700 hover:border-brand-600 dark:hover:border-brand-500 text-slate-700 dark:text-slate-200 hover:text-brand-600 dark:hover:text-brand-400 font-semibold text-sm sm:text-base transition flex items-center space-x-2">
                                 <i class="fa-solid fa-download"></i>
                                 <span>Download Resume</span>
-                            </a>
+                            </button>
                         </div>
 
                         <!-- Social & Direct Quick Links -->
@@ -1018,6 +1018,62 @@
         </div>
     </footer>
 
+    <!-- Resume View / Download Modal -->
+    <div id="resume-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/70 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300 p-4">
+        <div class="bg-white dark:bg-slate-900 w-full max-w-4xl rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden max-h-[95vh] flex flex-col transform scale-95 transition-all duration-300" id="resume-modal-card">
+            
+            <!-- Modal Header -->
+            <div class="p-6 bg-slate-50 dark:bg-slate-800/60 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-brand-600 text-white flex items-center justify-center font-bold">
+                        <i class="fa-solid fa-file-pdf text-lg"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-slate-900 dark:text-white text-lg">PRAKASH_UPDATED_RESUME_2.pdf</h3>
+                        <p class="text-xs text-slate-500">Java Full Stack Developer Resume</p>
+                    </div>
+                </div>
+                <button onclick="closeResumeModal()" class="p-2 rounded-xl text-slate-400 hover:text-slate-600 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-slate-700 transition">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+
+            <!-- Modal Content Preview (PDF Embedded) -->
+            <div class="p-6 overflow-y-auto space-y-6 flex-grow flex flex-col">
+                <div class="p-4 rounded-2xl bg-brand-50 dark:bg-brand-950/40 border border-brand-200 dark:border-brand-800/50 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div>
+                        <span class="font-semibold text-brand-900 dark:text-brand-200">Resume Ready for Review</span>
+                        <p class="text-xs text-brand-700 dark:text-brand-400">Previewing the PDF document. Click download to save the original file.</p>
+                    </div>
+                    <a href="PRAKASH_UPDATED_RESUME_2.pdf" download="PRAKASH_UPDATED_RESUME_2.pdf" class="px-5 py-2.5 bg-brand-600 hover:bg-brand-700 text-white font-semibold text-xs rounded-xl shadow-md transition flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-download"></i> Download PDF
+                    </a>
+                </div>
+
+                <!-- Actual PDF Iframe -->
+                <div class="w-full min-h-[50vh] flex-grow bg-slate-200 dark:bg-slate-800 rounded-2xl overflow-hidden border border-slate-300 dark:border-slate-700 relative">
+                    <iframe src="PRAKASH_UPDATED_RESUME_2.pdf" class="absolute inset-0 w-full h-full" frameborder="0" title="Resume PDF Preview">
+                        <div class="p-6 text-center h-full flex items-center justify-center flex-col space-y-4">
+                            <i class="fa-solid fa-file-pdf text-4xl text-slate-400"></i>
+                            <p class="text-slate-600 dark:text-slate-300 font-medium">Your browser does not support embedded PDFs.</p>
+                            <a href="PRAKASH_UPDATED_RESUME_2.pdf" download="PRAKASH_UPDATED_RESUME_2.pdf" class="text-brand-600 dark:text-brand-400 hover:underline">Download the PDF to view it</a>
+                        </div>
+                    </iframe>
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="p-4 bg-slate-50 dark:bg-slate-800/60 border-t border-slate-200 dark:border-slate-800 flex justify-end gap-3">
+                <button onclick="closeResumeModal()" class="px-4 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 text-sm font-semibold transition">
+                    Close
+                </button>
+                <a href="PRAKASH_UPDATED_RESUME_2.pdf" download="PRAKASH_UPDATED_RESUME_2.pdf" class="px-5 py-2 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-sm font-semibold transition flex items-center gap-2">
+                    <i class="fa-solid fa-download"></i> Save File
+                </a>
+            </div>
+        </div>
+    </div>
+
     <!-- Generic Details Modal -->
     <div id="detail-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/70 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300 p-4">
         <div class="bg-white dark:bg-slate-900 w-full max-w-lg rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 p-6 space-y-4">
@@ -1145,8 +1201,35 @@
         function handleFormSubmit(e) {
             e.preventDefault();
             const name = document.getElementById('name').value;
-            showToast(`Thank you, ${name}! Your message has been sent successfully.`);
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // Create a mailto link with the form data
+            const mailtoLink = `mailto:prakashkrishnan215@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent("Name: " + name + "\n\nMessage:\n" + message)}`;
+            
+            // Trigger the email client
+            window.location.href = mailtoLink;
+            
+            showToast(`Opening your email client to send the message...`);
             document.getElementById('contact-form').reset();
+        }
+
+        // Resume Modal Handlers
+        const resumeModal = document.getElementById('resume-modal');
+        const resumeCard = document.getElementById('resume-modal-card');
+
+        function openResumeModal() {
+            resumeModal.classList.remove('opacity-0', 'pointer-events-none');
+            resumeModal.classList.add('opacity-100', 'pointer-events-auto');
+            resumeCard.classList.remove('scale-95');
+            resumeCard.classList.add('scale-100');
+        }
+
+        function closeResumeModal() {
+            resumeModal.classList.add('opacity-0', 'pointer-events-none');
+            resumeModal.classList.remove('opacity-100', 'pointer-events-auto');
+            resumeCard.classList.add('scale-95');
+            resumeCard.classList.remove('scale-100');
         }
 
         // Generic Project Detail Modal
